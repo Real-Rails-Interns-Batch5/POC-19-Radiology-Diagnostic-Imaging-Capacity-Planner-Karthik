@@ -26,10 +26,10 @@ export function KPIStrip({ kpis }: { kpis: KPISummary | null }) {
                      transition-all duration-200"
         >
           {/* Synthetic badge */}
-          <span className="absolute top-2 right-2 text-[9px] font-semibold text-amber-400
-                           bg-amber-400/10 border border-amber-400/20 rounded px-1.5 py-0.5
-                           leading-none">
-            ⚠
+          <span className="text-[8px] font-semibold tracking-wider text-amber-400
+                           bg-amber-400/10 border border-amber-400/20 rounded
+                           px-1 py-0.5">
+            ⚠ SYNTHETIC
           </span>
           {/* Label */}
           <p className="text-[10px] font-medium tracking-widest text-slate-500 uppercase mt-1 leading-tight">

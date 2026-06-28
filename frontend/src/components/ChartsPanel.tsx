@@ -17,8 +17,8 @@ export function ChartsPanel({ waitTrend, ageDist, capacityGap }: any) {
       <div className={panelClass}>
         <div className="flex justify-between items-center mb-3">
           <h3 className={headerClass}>Wait-Time Trend (12m)</h3>
-          <span className="text-[9px] font-semibold text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded px-1.5 py-0.5">
-            ⚠ SYNTHETIC DATA
+          <span className="text-[8px] font-semibold tracking-wider text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded px-1 py-0.5">
+            ⚠ SYNTHETIC
           </span>
         </div>
         <div className="flex-grow">
@@ -41,8 +41,8 @@ export function ChartsPanel({ waitTrend, ageDist, capacityGap }: any) {
       <div className={panelClass}>
         <div className="flex justify-between items-center mb-3">
           <h3 className={headerClass}>Equipment Age Dist</h3>
-          <span className="text-[9px] font-semibold text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded px-1.5 py-0.5">
-            ⚠ SYNTHETIC DATA
+          <span className="text-[8px] font-semibold tracking-wider text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded px-1 py-0.5">
+            ⚠ SYNTHETIC
           </span>
         </div>
         <div className="flex-grow">
@@ -61,8 +61,8 @@ export function ChartsPanel({ waitTrend, ageDist, capacityGap }: any) {
       <div className={panelClass}>
         <div className="flex justify-between items-center mb-3">
           <h3 className={headerClass}>Top Capacity Gaps</h3>
-          <span className="text-[9px] font-semibold text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded px-1.5 py-0.5">
-            ⚠ SYNTHETIC DATA
+          <span className="text-[8px] font-semibold tracking-wider text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded px-1 py-0.5">
+            ⚠ SYNTHETIC
           </span>
         </div>
         <div className="flex-grow overflow-hidden min-h-[200px]">

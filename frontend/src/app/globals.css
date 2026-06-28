@@ -20,27 +20,27 @@ html, body {
   overflow: hidden;
 }
 
-/* Custom scrollbar for all scrollable areas */
-* {
+/* Thin dark scrollbar */
+html, body, * {
   scrollbar-width: thin;
-  scrollbar-color: #1F2937 #030712;
+  scrollbar-color: #38BDF8 #0B1117;
 }
 
-*::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 
-*::-webkit-scrollbar-track {
-  background: #030712;
+::-webkit-scrollbar-track {
+  background: #0B1117;
 }
 
-*::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #1F2937;
   border-radius: 4px;
-  transition: background-color 0.2s;
 }
 
-*::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background-color: #38BDF8;
 }
 
