@@ -23,29 +23,32 @@ const COLORS: Record<string, string> = {
   normal:   '#38BDF8',
 };
 
-function createPulseIcon(alertLevel: string, radius: number): L.DivIcon {
-  const color = COLORS[alertLevel] ?? COLORS.normal;
-  const size = Math.max(12, radius * 2);
-  const isCritical = alertLevel === 'critical';
+const getRadius = (hospital: Hospital) => {
+  const base = 6;
+  const scale = Math.min(hospital.scanners_per_100k * 1.5, 10);
+  return base + scale;
+};
 
-  const html = `
-    <div style="position:relative;width:${size}px;height:${size}px;">
-      <div style="
-        position:absolute;inset:0;border-radius:50%;
-        background:${color};opacity:0.9;
-      "></div>
-      ${isCritical ? `<div style="
-        position:absolute;inset:-4px;border-radius:50%;
-        border:2px solid ${color};
-        animation:pulse 1.8s ease-out infinite;opacity:0.5;
-      "></div>` : ''}
-    </div>`;
+function createPulseIcon(alertLevel: string, color: string, isCritical: boolean): L.DivIcon {
+  if (isCritical) {
+    const html = `
+      <div style="position:relative;width:12px;height:12px;">
+        <div style="position:absolute;inset:0;border-radius:50%;background:${color};opacity:0.9;"></div>
+        <div style="position:absolute;inset:-4px;border-radius:50%;border:2px solid ${color};animation:pulse 1.8s ease-out infinite;opacity:0.5;"></div>
+      </div>`;
+    return L.divIcon({
+      className: '',
+      html,
+      iconSize: [12, 12],
+      iconAnchor: [6, 6],
+    });
+  }
 
   return L.divIcon({
     className: '',
-    html,
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
+    html: `<div style="position:relative;"><div style="position:absolute;inset:0;border-radius:50%;background:${color};opacity:0.9;"></div></div>`,
+    iconSize: [0, 0], // overridden per-marker via radius
+    iconAnchor: [0, 0],
   });
 }
 
@@ -72,8 +75,18 @@ export default function MapComponent({
         />
 
         {hospitals.map(h => {
-          const radius = Math.max(6, h.scanners_per_100k * 2);
-          const icon = createPulseIcon(h.alert_level, radius);
+          const radius = getRadius(h);
+          const color = COLORS[h.alert_level] ?? COLORS.normal;
+          const isCritical = h.alert_level === 'critical';
+          const size = isCritical ? 12 : radius * 2;
+          const icon = isCritical
+            ? createPulseIcon(h.alert_level, color, true)
+            : L.divIcon({
+                className: '',
+                html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};opacity:0.9;"></div>`,
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size / 2],
+              });
           const isSelected = h.id === selectedId;
 
           return (
